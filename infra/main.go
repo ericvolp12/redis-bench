@@ -9,8 +9,10 @@ import (
 )
 
 func main() {
-	machineType := "t2d-standard-16"
+	machineType := "t2d-standard-4"
 	sshPubKey := "user:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIII6AeuI/N5EUIL4+HqK8YmpoYyTwQvSFUSl6ev6Cg+Q user@work-vm-big"
+	bootImage := "debian-cloud/debian-11"
+	// bootImage := "projects/debian-cloud/global/images/debian-11-bullseye-arm64-v20230509" // Use for ARM instances
 
 	pulumi.Run(func(ctx *pulumi.Context) error {
 		// Prepare the startup script
@@ -33,7 +35,7 @@ func main() {
 			MachineType: pulumi.String(machineType),
 			BootDisk: &compute.InstanceBootDiskArgs{
 				InitializeParams: &compute.InstanceBootDiskInitializeParamsArgs{
-					Image: pulumi.String("debian-cloud/debian-11"),
+					Image: pulumi.String(bootImage),
 				},
 			},
 			NetworkInterfaces: compute.InstanceNetworkInterfaceArray{&networkInterface},
