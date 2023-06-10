@@ -6,9 +6,13 @@ sudo apt-get update -y
 # Install Docker
 sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release -y
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
 sudo apt-get update -y
-sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 # Add 'user' to docker group so we can execute docker commands without sudo
 sudo usermod -aG docker user
@@ -17,9 +21,9 @@ sudo usermod -aG docker user
 sudo apt-get install git btop make -y
 
 # Install Go
-curl -LO https://golang.org/dl/go1.20.5.linux-amd64.tar.gz
-tar -C /usr/local -xzf go1.20.5.linux-amd64.tar.gz
-rm go1.20.5.linux-amd64.tar.gz
+curl -LO https://golang.org/dl/go1.20.5.linux-arm64.tar.gz
+tar -C /usr/local -xzf go1.20.5.linux-arm64.tar.gz
+rm go1.20.5.linux-arm64.tar.gz
 
 # Download required docker images
 docker pull redis/redis-stack-server:latest
