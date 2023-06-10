@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	machineType := "t2d-standard-2"
+	machineType := "t2d-standard-16"
 	sshPubKey := "user:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIII6AeuI/N5EUIL4+HqK8YmpoYyTwQvSFUSl6ev6Cg+Q user@work-vm-big"
 
 	pulumi.Run(func(ctx *pulumi.Context) error {
