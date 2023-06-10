@@ -95,6 +95,8 @@ func main() {
 		// Add a column for each Backend read and write runtime.
 		for _, backend := range backends {
 			p.Fprintf(f, "%s (write)|", backend)
+		}
+		for _, backend := range backends {
 			p.Fprintf(f, "%s (read)|", backend)
 		}
 		p.Fprintf(f, "\n")
@@ -139,9 +141,17 @@ func main() {
 
 	for _, result := range testResults {
 		p.Fprintf(f, "|%s|%d|%d|%d|%d|%d|", result.TestName, result.Inserts, result.ValueSize, result.Reads, result.PipelineSize, result.Repetitions)
+		// Print Write timings
 		for _, backend := range backends {
 			if backendResult, ok := result.BackendResults[backend]; ok {
 				p.Fprintf(f, "%.3fs|", backendResult.AverageWriteRuntime.Seconds())
+			} else {
+				p.Fprintf(f, "N/A|")
+			}
+		}
+		// Print Read timings
+		for _, backend := range backends {
+			if backendResult, ok := result.BackendResults[backend]; ok {
 				p.Fprintf(f, "%.3fs|", backendResult.AverageReadRuntime.Seconds())
 			} else {
 				p.Fprintf(f, "N/A|")
