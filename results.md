@@ -45,32 +45,40 @@ Times shown are an average of 3 executions with DBs recreated in between each ru
 
 ### `t2d-standard-2`
 
+| Test Name   | Inserts | Value Size | Reads | Pipeline Size | Repetitions | redis-stack (write) | dragonfly (write) | redis-stack (read) | dragonfly (read) |
+|-------------|---------|------------|-------|---------------|-------------|---------------------|-------------------|--------------------|------------------|
+| No-Pipeline | 100k    | 5b         | 5m    | -1            | 3           | 4.106s              | 6.427s            | 44.442s            | 78.345s          |
+| No-Pipeline | 100k    | 1kb        | 5m    | -1            | 3           | 4.002s              | 6.516s            | 45.847s            | 84.976s          |
+| No-Pipeline | 100k    | 10kb       | 5m    | -1            | 3           | 5.058s              | 8.190s            | 77.472s            | 133.798s         |
+| Pipeline    | 500k    | 5b         | 25m   | 10k           | 3           | 1.488s              | 8.813s            | 15.443s            | 34.237s          |
+| Pipeline    | 500k    | 1kb        | 25m   | 10k           | 3           | 2.247s              | 11.023s           | 36.344s            | 56.709s          |
+| Pipeline    | 500k    | 1kb        | 25m   | 1k            | 3           | 2.393s              | 8.879s            | 35.333s            | 78.564s          |
+| Pipeline    | 100k    | 10kb       | 5m    | 1k            | 3           | 1.588s              | 3.848s            | 36.134s            | 36.020s          |
+
 
 ### `t2d-standard-4`
 
-| Test Name   | Inserts | Value Size | Reads | Pipeline Size | Repetitions | redis-stack (write) | redis-stack (read) | dragonfly (write) | dragonfly (read) |
-|-------------|---------|------------|-------|---------------|-------------|---------------------|--------------------|-------------------|------------------|
-| No-Pipeline | 100k    | 5b         | 5m    | -1            | 3           | 4.307s              | 46.0463s           | 7.780s            | 1m25.603s        |
-| No-Pipeline | 100k    | 1kb        | 5m    | -1            | 3           | 4.482s              | 50.594s            | 7.989s            | 1m30.717s        |
-| No-Pipeline | 100k    | 10kb       | 5m    | -1            | 3           | 6.260s              | 1m25.990s          | 9.310s            | 2m22.115s        |
-| Pipeline    | 500k    | 5b         | 25m   | 10k           | 3           | 1.538s              | 15.214s            | 12.625s           | 37.685s          |
-| Pipeline    | 500k    | 1kb        | 25m   | 10k           | 3           | 2.290s              | 37.069s            | 14.342s           | 1m4.967s         |
-| Pipeline    | 500k    | 1kb        | 25m   | 1k            | 3           | 2.470s              | 35.964s            | 12.218s           | 1m22.487s        |
-| Pipeline    | 100k    | 10kb       | 5m    | 1k            | 3           | 1.644s              | 37.156s            | 4.160s            | 41.889s          |
-
-
+| Test Name   | Inserts | Value Size | Reads | Pipeline Size | Repetitions | redis-stack (write) | dragonfly (write) | redis-stack (read) | dragonfly (read) |
+|-------------|---------|------------|-------|---------------|-------------|---------------------|-------------------|--------------------|------------------|
+| No-Pipeline | 100k    | 5b         | 5m    | -1            | 3           | 4.307s              | 7.780s            | 46.0463s           | 85.603s          |
+| No-Pipeline | 100k    | 1kb        | 5m    | -1            | 3           | 4.482s              | 7.989s            | 50.594s            | 90.717s          |
+| No-Pipeline | 100k    | 10kb       | 5m    | -1            | 3           | 6.260s              | 9.310s            | 85.990s            | 142.115s         |
+| Pipeline    | 500k    | 5b         | 25m   | 10k           | 3           | 1.538s              | 12.625s           | 15.214s            | 37.685s          |
+| Pipeline    | 500k    | 1kb        | 25m   | 10k           | 3           | 2.290s              | 14.342s           | 37.069s            | 64.967s          |
+| Pipeline    | 500k    | 1kb        | 25m   | 1k            | 3           | 2.470s              | 12.218s           | 35.964s            | 142.487s         |
+| Pipeline    | 100k    | 10kb       | 5m    | 1k            | 3           | 1.644s              | 4.160s            | 37.156s            | 41.889s          |
 
 ### `t2d-standard-8`
 
-| Test Name   | Inserts | Value Size | Reads | Pipeline Size | Repetitions | redis-stack (write) | redis-stack (read) | dragonfly (write) | dragonfly (read) |
-|-------------|---------|------------|-------|---------------|-------------|---------------------|--------------------|-------------------|------------------|
-| No-Pipeline | 100k    | 5b         | 5m    | -1            | 3           | 3.602s              | 27.297s            | 7.468s            | 22.250s          |
-| No-Pipeline | 100k    | 1kb        | 5m    | -1            | 3           | 3.678s              | 29.751s            | 7.619s            | 24.723s          |
-| No-Pipeline | 100k    | 10kb       | 5m    | -1            | 3           | 4.765s              | 43.024s            | 8.887s            | 40.605s          |
-| Pipeline    | 500k    | 5b         | 25m   | 10k           | 3           | 1.480s              | 13.444s            | 15.327s           | 12.918s          |
-| Pipeline    | 500k    | 1kb        | 25m   | 10k           | 3           | 2.266s              | 32.299s            | 17.051s           | 21.063s          |
-| Pipeline    | 500k    | 1kb        | 25m   | 1k            | 3           | 2.332s              | 30.711s            | 14.921s           | 39.722s          |
-| Pipeline    | 100k    | 10kb       | 5m    | 1k            | 3           | 1.472s              | 38.814s            | 3.873s            | 14.283s          |
+| Test Name   | Inserts | Value Size | Reads | Pipeline Size | Repetitions | redis-stack (write) | dragonfly (write) | redis-stack (read) | dragonfly (read) |
+|-------------|---------|------------|-------|---------------|-------------|---------------------|-------------------|--------------------|------------------|
+| No-Pipeline | 100k    | 5b         | 5m    | -1            | 3           | 3.602s              | 7.468s            | 27.297s            | 22.250s          |
+| No-Pipeline | 100k    | 1kb        | 5m    | -1            | 3           | 3.678s              | 7.619s            | 29.751s            | 24.723s          |
+| No-Pipeline | 100k    | 10kb       | 5m    | -1            | 3           | 4.765s              | 8.887s            | 43.024s            | 40.605s          |
+| Pipeline    | 500k    | 5b         | 25m   | 10k           | 3           | 1.480s              | 15.327s           | 13.444s            | 12.918s          |
+| Pipeline    | 500k    | 1kb        | 25m   | 10k           | 3           | 2.266s              | 17.051s           | 32.299s            | 21.063s          |
+| Pipeline    | 500k    | 1kb        | 25m   | 1k            | 3           | 2.332s              | 14.921s           | 30.711s            | 39.722s          |
+| Pipeline    | 100k    | 10kb       | 5m    | 1k            | 3           | 1.472s              | 3.873s            | 38.814s            | 14.283s          |
 
 
 ### Versions
