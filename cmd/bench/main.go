@@ -87,22 +87,24 @@ func main() {
 		log.Printf("Error creating results file: %v", err)
 	}
 
+	p := message.NewPrinter(language.English)
+
 	if f != nil {
 		defer f.Close()
-		fmt.Fprintf(f, "|Test Name|Inserts|Value Size|Reads|Pipeline Size|Repetitions|")
+		p.Fprintf(f, "|Test Name|Inserts|Value Size|Reads|Pipeline Size|Repetitions|")
 		// Add a column for each Backend read and write runtime.
 		for _, backend := range backends {
-			fmt.Fprintf(f, "%s (write)|", backend)
-			fmt.Fprintf(f, "%s (read)|", backend)
+			p.Fprintf(f, "%s (write)|", backend)
+			p.Fprintf(f, "%s (read)|", backend)
 		}
-		fmt.Fprintf(f, "\n")
+		p.Fprintf(f, "\n")
 
-		fmt.Fprintf(f, "|---|---|---|---|---|---|")
+		p.Fprintf(f, "|---|---|---|---|---|---|")
 		for range backends {
-			fmt.Fprintf(f, "---|")
-			fmt.Fprintf(f, "---|")
+			p.Fprintf(f, "---|")
+			p.Fprintf(f, "---|")
 		}
-		fmt.Fprintf(f, "\n")
+		p.Fprintf(f, "\n")
 	}
 
 	testResults := map[int]TestResultRow{}
@@ -136,16 +138,16 @@ func main() {
 	}
 
 	for _, result := range testResults {
-		fmt.Fprintf(f, "|%s|%d|%d|%d|%d|%d|", result.TestName, result.Inserts, result.ValueSize, result.Reads, result.PipelineSize, result.Repetitions)
+		p.Fprintf(f, "|%s|%d|%d|%d|%d|%d|", result.TestName, result.Inserts, result.ValueSize, result.Reads, result.PipelineSize, result.Repetitions)
 		for _, backend := range backends {
 			if backendResult, ok := result.BackendResults[backend]; ok {
-				fmt.Fprintf(f, "%s|", backendResult.AverageWriteRuntime)
-				fmt.Fprintf(f, "%s|", backendResult.AverageReadRuntime)
+				p.Fprintf(f, "%.3fs|", backendResult.AverageWriteRuntime.Seconds())
+				p.Fprintf(f, "%.3fs|", backendResult.AverageReadRuntime.Seconds())
 			} else {
-				fmt.Fprintf(f, "N/A|")
+				p.Fprintf(f, "N/A|")
 			}
 		}
-		fmt.Fprintf(f, "\n")
+		p.Fprintf(f, "\n")
 	}
 }
 
