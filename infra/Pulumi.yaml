@@ -1,0 +1,3 @@
+name: redis-bench
+runtime: go
+description: Benchmarking Redis backends

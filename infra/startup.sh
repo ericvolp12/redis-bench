@@ -15,7 +15,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 sudo usermod -aG docker user
 
 # Install Git
-sudo apt-get install git btop -y
+sudo apt-get install git btop build-essential -y
 
 # Install Go
 curl -LO https://golang.org/dl/go1.20.5.linux-amd64.tar.gz
@@ -28,9 +28,6 @@ docker pull docker.dragonflydb.io/dragonflydb/dragonfly:latest
 
 # Clone the git repo for redis testing
 git clone https://github.com/ericvolp12/redis-bench.git /home/user/redis-bench
-
-# Build the redis bench
-/usr/local/go/bin/go build -o /home/user/redis-bench /home/user/redis-bench/cmd/bench/main.go
 
 # Chown the repo to user
 sudo chown -R user:user /home/user
