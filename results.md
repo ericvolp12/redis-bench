@@ -55,7 +55,6 @@ Times shown are an average of 3 executions with DBs recreated in between each ru
 | Pipeline    | 500,000 | 1,000      | 25,000,000 | 1,000         | 3           | 2.393s              | 8.879s            | 35.333s            | 78.564s          |
 | Pipeline    | 100,000 | 10,000     | 5,000,000  | 1,000         | 3           | 1.588s              | 3.848s            | 36.134s            | 36.020s          |
 
-
 ### `t2d-standard-4` (AMD Epyc Milan)
 
 | Test Name   | Inserts | Value Size | Reads      | Pipeline Size | Repetitions | redis-stack (write) | dragonfly (write) | redis-stack (read) | dragonfly (read) |
@@ -68,6 +67,17 @@ Times shown are an average of 3 executions with DBs recreated in between each ru
 | Pipeline    | 500,000 | 1,000      | 25,000,000 | 1,000         | 3           | 2.156s              | 7.699s            | 27.274s            | 52.570s          |
 | Pipeline    | 100,000 | 10,000     | 5,000,000  | 1,000         | 3           | 1.315s              | 2.403s            | 36.558s            | 19.660s          |
 
+### `t2a-standard-4` (Ampere Altra ARM)
+
+| Test Name   | Inserts | Value Size | Reads      | Pipeline Size | Repetitions | redis-stack (write) | dragonfly (write) | redis-stack (read) | dragonfly (read) |
+|-------------|---------|------------|------------|---------------|-------------|---------------------|-------------------|--------------------|------------------|
+| No-Pipeline | 100,000 | 5          | 5,000,000  | -1            | 3           | 3.215s              | 4.361s            | 31.554s            | 45.531s          |
+| No-Pipeline | 100,000 | 1,000      | 5,000,000  | -1            | 3           | 3.463s              | 4.664s            | 35.010s            | 50.393s          |
+| No-Pipeline | 100,000 | 10,000     | 5,000,000  | -1            | 3           | 5.090s              | 6.630s            | 60.131s            | 85.508s          |
+| Pipeline    | 500,000 | 5          | 25,000,000 | 10,000        | 3           | 1.667s              | 6.310s            | 16.955s            | 24.440s          |
+| Pipeline    | 500,000 | 1,000      | 25,000,000 | 10,000        | 3           | 2.560s              | 7.050s            | 39.049s            | 55.376s          |
+| Pipeline    | 500,000 | 1,000      | 25,000,000 | 1,000         | 3           | 2.629s              | 7.001s            | 37.631s            | 65.552s          |
+| Pipeline    | 100,000 | 10,000     | 5,000,000  | 1,000         | 3           | 1.828s              | 2.253s            | 37.783s            | 36.004s          |
 
 ### `t2d-standard-8` (AMD Epyc Milan)
 
@@ -92,19 +102,6 @@ Times shown are an average of 3 executions with DBs recreated in between each ru
 | Pipeline    | 500,000 | 1,000      | 25,000,000 | 10,000        | 3           | 2.072s              | 21.752s           | 30.933s            | 20.841s          |
 | Pipeline    | 500,000 | 1,000      | 25,000,000 | 1,000         | 3           | 2.091s              | 19.244s           | 27.827s            | 39.162s          |
 | Pipeline    | 100,000 | 10,000     | 5,000,000  | 1,000         | 3           | 1.339s              | 4.534s            | 35.128s            | 13.063s          |
-
-
-### `t2a-standard-4` (Ampere Altra ARM)
-
-| Test Name   | Inserts | Value Size | Reads      | Pipeline Size | Repetitions | redis-stack (write) | dragonfly (write) | redis-stack (read) | dragonfly (read) |
-|-------------|---------|------------|------------|---------------|-------------|---------------------|-------------------|--------------------|------------------|
-| No-Pipeline | 100,000 | 5          | 5,000,000  | -1            | 3           | 3.215s              | 4.361s            | 31.554s            | 45.531s          |
-| No-Pipeline | 100,000 | 1,000      | 5,000,000  | -1            | 3           | 3.463s              | 4.664s            | 35.010s            | 50.393s          |
-| No-Pipeline | 100,000 | 10,000     | 5,000,000  | -1            | 3           | 5.090s              | 6.630s            | 60.131s            | 85.508s          |
-| Pipeline    | 500,000 | 5          | 25,000,000 | 10,000        | 3           | 1.667s              | 6.310s            | 16.955s            | 24.440s          |
-| Pipeline    | 500,000 | 1,000      | 25,000,000 | 10,000        | 3           | 2.560s              | 7.050s            | 39.049s            | 55.376s          |
-| Pipeline    | 500,000 | 1,000      | 25,000,000 | 1,000         | 3           | 2.629s              | 7.001s            | 37.631s            | 65.552s          |
-| Pipeline    | 100,000 | 10,000     | 5,000,000  | 1,000         | 3           | 1.828s              | 2.253s            | 37.783s            | 36.004s          |
 
 ### Versions
 Docker Commands
