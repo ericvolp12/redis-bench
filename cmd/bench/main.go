@@ -91,7 +91,7 @@ func main() {
 
 	if f != nil {
 		defer f.Close()
-		p.Fprintf(f, "|Test Name|Inserts|Value Size|Reads|Pipeline Size|Repetitions|")
+		p.Fprintf(f, "|Test Name|Inserts|Value Size|Reads|Pipeline Size|Runs|")
 		// Add a column for each Backend read and write runtime.
 		for _, backend := range backends {
 			p.Fprintf(f, "%s (write)|", backend)
