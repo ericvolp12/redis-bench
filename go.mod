@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/docker/docker v24.0.2+incompatible
 	github.com/redis/go-redis/v9 v9.0.5
+	go.uber.org/automaxprocs v1.5.2
 	golang.org/x/text v0.9.0
 )
 

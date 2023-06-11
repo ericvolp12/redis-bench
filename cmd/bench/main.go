@@ -13,6 +13,7 @@ import (
 	"github.com/docker/docker/client"
 	"github.com/docker/docker/pkg/namesgenerator"
 	"github.com/redis/go-redis/v9"
+	_ "go.uber.org/automaxprocs"
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
 )
